@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Demo</title>
+    <style>
+        /* Using basic CSS to make the form visually clear */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f2f5;
+        }
+
+        .form-container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        .form-title {
+            text-align: center;
+            color: #1a73e8;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .submit-button:hover {
+            background-color: #1557b0;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .loading-spinner {
+            display: none;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .login-successful-message {
+            color: darkgreen;
+            display: none;
+            text-align: center;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Main container with a unique ID and class -->
+    <div id="login-form" class="form-container">
+        <!-- Form title using a data attribute for demonstration -->
+        <h2 class="form-title" data-test="login-title">Welcome Back</h2>
+        
+        <!-- Username field with multiple attributes to demonstrate different selector options -->
+        <div class="input-group">
+            <input 
+                type="text" 
+                id="username" 
+                name="username" 
+                class="form-control"
+                placeholder="Enter username"
+                data-test="username-input"
+                aria-label="Username"
+            >
+        </div>
+
+        <!-- Password field showing different attributes and nested structure -->
+        <div class="input-group">
+            <input 
+                type="password" 
+                id="password" 
+                name="password" 
+                class="form-control"
+                placeholder="Enter password"
+                data-test="password-input"
+                aria-label="Password"
+            >
+        </div>
+
+        <!-- Submit button with multiple classes and a data attribute -->
+        <button 
+            id="login-button"
+            class="submit-button primary-button"
+            data-test="submit-button"
+            onclick="handleLogin()"
+        >
+            Login
+        </button>
+
+        <!-- Loading spinner to demonstrate dynamic elements -->
+        <div id="loading-spinner" class="loading-spinner">
+            Loading...
+        </div>
+
+        <!-- Error message to demonstrate hidden elements -->
+        <div id="error-message" class="error-message">
+            Invalid username or password
+        </div>
+
+        
+        <!-- Successful login message -->
+        <div id="login-successful-message" class="login-successful-message">
+            Welcome test!
+        </div>
+
+    </div>
+
+
+    <script>
+        // Simple JavaScript to demonstrate dynamic behavior
+        function handleLogin() {
+            // Get elements
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const spinner = document.getElementById('loading-spinner');
+            const errorMessage = document.getElementById('error-message');
+            const loginButton = document.getElementById('login-button');
+            const successMessage = document.getElementById('login-successful-message')
+
+            // Hide any existing error message
+            errorMessage.style.display = 'none';
+            
+            // Show loading spinner
+            spinner.style.display = 'block';
+            loginButton.disabled = true;
+
+            // Simulate API call
+            setTimeout(() => {
+                // Simple validation for demonstration
+                if (username === 'test' && password === 'test') {
+                    alert('Login successful!');
+                } else {
+                    errorMessage.style.display = 'block';
+                }
+                
+                // Hide spinner
+                spinner.style.display = 'none';
+                successMessage.style.display = 'block';
+                loginButton.disabled = false;
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
